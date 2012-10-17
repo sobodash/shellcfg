@@ -1,0 +1,16 @@
+#!/bin/sh
+if [ "`cat ~/.mach`" = "yeeloong" ]; then
+	AC=/sys/class/power_supply/yeeloong-ac
+	BAT=/sys/class/power_supply/yeeloong-bat
+elif [ "`cat ~/.mach`" = "eeepc701" ]; then
+	AC=/sys/class/power_supply/AC0
+	BAT=/sys/class/power_supply/BAT0
+else
+	echo "check-power: cannot find ACPI on this hardware"
+fi
+
+if [ "`cat ${AC}/online`" = "0" ]; then
+	echo "放电($((`cat ${BAT}/charge_now`*100/`cat ${BAT}/charge_full`))%)"
+else
+	echo "充电($((`cat ${BAT}/charge_now`*100/`cat ${BAT}/charge_full`))%)"
+fi

@@ -1,0 +1,38 @@
+#!/bin/sh
+
+#export XMODIFIERS="@im=fcitx"
+#export GTK_IM_MODULE=xim
+#export XIM=fcitx
+#export XIM_PROGRAM=fcitx
+#export QT_IM_MODULE=xim
+
+# Turn off screen blanking, turn on energy star
+xset s off &
+xset dpms 0 0 3600 &
+
+# Set terminal bell
+xset b off &
+
+setxkbmap -option terminate:ctrl_alt_bksp &
+xset r rate 240 90 &
+
+# Make sure our Xresources file is fresh
+# (This is throwing cpp errors on Wheezy, so kill the output)
+xrdb -load ~/.Xresources > /dev/null 2>&1 &
+
+# Launc Audacious. We'll use the CLI and menubar icon.
+audacious &
+
+# Launch the terminal as a daemon for speed
+nice urxvtd &
+
+# Launch the IME
+nice fcitx >>/dev/null 2>&1 &
+
+xsetroot -solid gray20 &
+
+# Launch the screensaver daemon
+nice xscreensaver -nosplash &
+
+# Execute Window Manager
+exec awesome

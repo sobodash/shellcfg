@@ -1,0 +1,272 @@
+# Set up fcitx as default IME
+export XMODIFIERS="@im=fcitx"
+export QT_IM_MODULE=xim
+export GTK_IM_MODULE=xim
+
+# Fix MALLOC error with some programs like audtty
+export MALLOC_CHECK_=0
+
+# SDL preferences
+export SDL_AUDIODRIVER='alsa'
+export SDL_VIDEODRIVER='x11'
+
+# MACH type
+MACH=`cat ~/.mach`
+
+# CFLAGS
+if [ "$MACH" == "yeeloong" ]; then
+	export CFLAGS='-O2 -march=loongson2f -mtune=loongson2f -fomit-frame-pointer -mplt -pipe'
+elif [ "$MACH" == "eeepc701" ]; then
+	export CFLAGS='-O2 -march=pentium-m -fomit-frame-pointer -pipe'
+else
+	export CFLAGS='-O2 -fomit-frame-pointer -pipe'
+fi
+export CXXFLAGS=${CFLAGS}
+
+# Add ~/.local to $PATH
+export PATH=${PATH}:/home/d/.local/bin
+
+
+# Colors ----------------------------------------------------------
+export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
+export CLICOLOR=1
+
+alias ls='ls --color=auto' # For linux, etc
+export LS_COLORS='di=1;35:fi=0:ln=0;92:pi=31:so=31:bd=31:cd=31:or=5;7;31:mi=5;7;35:ex=94'
+
+# Colorize graphic files
+export LS_COLORS="${LS_COLORS}:*.png=33:*.jpg=33:*.jpeg=33:*.gif=33:*.xpm=33:*.xbm=33:*.bmp=33:*.svg=33:*.psd=33:*.ico=33:*.xcf=33:*.tga=33:*.tif=33:*.tiff=33:*.pcx=33"
+
+# Colorize archives
+export LS_COLORS="${LS_COLORS}:*.Z=91;*.zip=91:*.gz=91:*.rar=91:*.arj=91:*.zoo=91:*.lzh=91:*.7z=91:*.ace=91:*.tar=91:*.xz=91:*.bz=91:*.bz2=91:*.tgz=91:*.tbz2=91"
+
+# Set up colors for interactive shells and scripts
+export CLR_NC='\e\[0m\]'            # No Color
+# Dark tones
+export CLR_BLACK='\e\[0;30m\]'      # rgb(0,0,0)
+export CLR_RED='\e\[0;31m\]'        # rgb(170,0,0)
+export CLR_GREEN='\e\[0;32m\]'      # rgb(0,170,0)
+export CLR_BROWN='\e\[0;33m\]'      # rgb(170,85,0)
+export CLR_NAVY='\e\[0;34m\]'       # rgb(0,0,170)
+export CLR_VIOLET='\e\[0;35m\]'     # rgb(170,0,170)
+export CLR_SEAGREEN='\e\[0;36m\]'   # rgb(0,170,170)
+export CLR_GRAY='\e\[0;37m\]'       # rgb(170,170,170)
+# Light tones
+export CLR_DIMGRAY='\e[1;30m\]'    # rgb(85,85,85)
+export CLR_CORAL='\e[1;31m\]'      # rgb(255,85,85)
+export CLR_LIME='\e[1;32m\]'       # rgb(85,255,85)
+export CLR_YELLOW='\e[1;33m\]'     # rgb(255,255,85)
+export CLR_CORNFLOWER='\e[1;34m\]' # rgb(85,85,255)
+export CLR_MAGENTA='\e[1;35m\]'    # rgb(255,85,255)
+export CLR_CYAN='\e[1;36m\]'       # rgb(85,255,255)
+export CLR_WHITE='\e[1;37m\]'      # rgb(255,255,255)
+
+# Quick color list
+alias color-names="set | egrep 'CLR_\w*'" # lists all the colors
+
+# Prompts ----------------------------------------------------------
+prompt_func () {
+	local RETURN=$?;
+	
+	# Use a lighter color for the VGA console	
+	if [ "$TERM" == "linux" ]; then
+		COLOR="\[\e[1;34m\]"
+	else
+		COLOR="\[\e[0;34m\]"
+	fi
+	
+	# Add a red flag if we're in a Mercurial path
+	if [ -d "${PWD}/.hg" -o -d "${PWD}/../.hg" -o -d "${PWD}/../../.hg" -o -d "${PWD}/../../../.hg" -o -d "${PWD}/../../../../.hg" ]; then
+		prompt="$COLOR\w\[\e[1;31m\]*"
+	else
+		prompt="$COLOR\w"
+	fi
+	
+	# Turn the prompt red if the last command exits poorly
+	if [[ $previous_return_value -eq 0 ]]; then
+		PS1="${prompt} \[\e[0m\]> "
+	else
+		PS1="${prompt} \[\e[1;31m\]>\[\e[0m\] "
+	fi
+}
+
+PROMPT_COMMAND=prompt_func
+
+export PS2='> '   # Secondary prompt
+export PS3='#? '  # Prompt 3
+export PS4='+'    # Prompt 4
+
+# Navigation -------------------------------------------------------
+alias ..='cd ..'
+alias ...='cd .. ; cd ..'
+alias home='cd ~'
+alias l='ls -l'
+alias ll='ls -hl'
+alias la='ls -a'
+alias lla='ls -lah'
+source ~/.local/share/bashlets/bashmarks.sh
+
+# Editors ----------------------------------------------------------
+export EDITOR='nano'
+export GIT_EDITOR='nano'
+alias v=vim
+alias vi=vim
+
+# Media player -----------------------------------------------------
+alias next='audacious --fwd'
+alias prev='audacious --rew'
+alias pause='audacious --play-pause'
+alias queue='audacious --enqueue'
+
+# Launchers --------------------------------------------------------
+function iceweasel () { command iceweasel "$@" & }
+function xpdf () { command xpdf "$@" & }
+function abiword () { command abiword "$@" & }
+function chibitracker () { command chibitracker "$@" & }
+function bview () { command bview "$@" & }
+function quasi88 () { command quasi88 "$@" & }
+function snes9x-gtk () { command snes9x-gtk "$@" & }
+function mednafen () { command mednafen "$@" & }
+function xnp2 () { command xnp2 "$@" & }
+
+
+# Functions --------------------------------------------------------
+function cl() {
+	cd $1
+	ls -la
+}
+
+function findportuser() {
+	lsof -i : $i"
+}
+
+function gns() {
+	find . -path '*/.hg' -prune -o -type f -print0 | xargs -0 grep -I -n -e "$1"
+}
+
+function killhard() {
+	killall -9 "$i""
+}
+
+function swap() {
+	local TMPFILE=tmp.$$
+	
+	[ $# -ne 2 ] && echo "swap: 2 arguments needed" && return 1
+	[ ! -e $1 ] && echo "swap: '$1' does not exist!" && return 1
+	[ ! -e $2 ] && echo "swap: '$2' does not exist!" && return 1
+	
+	mv "$1" $TMPFILE
+	mv "$2" "$1"
+	mv $TMPFILE "$2"
+}
+
+function extract() {
+	if [ -f $1 ]; then
+		case $1 in
+			*.tar.bz2) tar xvjf $1          ;;
+			*.tar.bz)  tar xvjf $1          ;;
+			*.tar.gz)  tar xvzf $2          ;;
+			*.tar.Z)   zcat $1 | tar xvf -  ;;
+			*.tar.xz)  xzcat $1 | tar xvf - ;;
+			*.bz2)     bunzip2 $1           ;;
+			*.rar)     unrar x $1           ;;
+			*.gz)      gunzip $1            ;;
+			*.tar)     tar xvf $1           ;;
+                        *.tbz2)    tar xvjf $1          ;;
+			*.tgz)     tar xvzf $1          ;;
+			*.zip)     unzip $1             ;;
+			*.Z)       uncompress $1        ;;
+			*.7z)      7z x $i              ;;
+			*.xz)      xz -d $i             ;;
+			*.lzh)     lha x $1             ;;
+			*.arj)     arj e $1             ;;
+			*.zoo)     zoo x $1             ;;
+			*)         echo "extract: '$1' cannot be extracted (unknown type)" ;;
+		esac
+	else
+		echo "extract: '$1' is not a valid file"
+	fi
+}
+
+function color-test {
+	for attr in 0 1 ; do
+		echo "----------------------------------------------------------------"
+		printf "ESC[%s;Foreground;Background - \n" $attr
+		for fore in 30 31 32 33 34 35 36 37; do
+			for back in 40 41 42 43 44 45 46 47; do
+				printf '\033[%s;%s;%sm %02s;%02s  \033[0m' $attr $fore $back $fore $back
+			done
+			printf '\n'
+		done
+		printf '\033[0m'
+	done
+}
+
+function check-ip {
+	local WLAN=`/sbin/ifconfig wlan0 | awk '/inet / { print $2 } ' | sed -e s/addr://`
+	local LAN=`/sbin/ifconfig eth0 | awk '/inet / { print $2 } ' | sed -e s/addr://`
+	if [ "$WLAN" != "" ]; then
+		echo $WLAN
+	elif [ "$LAN" != "" ]; then
+		echo $LAN
+	else
+		echo "Not connected"
+	fi
+}
+
+function check-uptime {
+	# Returns uptime in hours and minutes only
+	uptime | sed 's/.*up \([^,]*\), .*/\1/' | sed -e 's/^[ \t]*//'
+}
+
+function check-memory {
+	local TOTAL_MEM=`cat /proc/meminfo | grep MemTotal: | awk '{print $2}' | sed 's/k//'`
+	local FREE_MEM=`cat /proc/meminfo | grep MemFree: | awk '{print $2}' | sed 's/k//'`
+	local USED_MEM=$((${TOTAL_MEM}-${FREE_MEM}))
+	echo "$((${USED_MEM}/1024))M used ($((${TOTAL_MEM}/1024))M total)"
+}
+
+function ii() {
+	echo -e "Connected to ${CLR_CORAL}`hostname`${CLR_NC}"
+	echo "Kernel: `uname -s` `uname -r`"
+	echo "Date:   `date`"
+	if $(echo uptime | grep -E "min|days" >/dev/null); then
+		echo -e "Uptime: $(echo `uptime | awk '{ print $3 $4 }'`)"
+	else
+		echo -e "Uptime: $(echo `uptime | sed s/,//g | awk '{ print $3 " (hh:mm)" }'`)"
+	fi
+	#echo "Machine stats:`uptime`"
+        local TOTAL_MEM=`cat /proc/meminfo | grep MemTotal: | awk '{print $2}' | sed 's/k//'`
+        local FREE_MEM=`cat /proc/meminfo | grep MemFree: | awk '{print $2}' | sed 's/k//'`
+        local USED_MEM=$((${TOTAL_MEM}-${FREE_MEM}))
+        echo -e "Memory: $((${USED_MEM}/1024))M used ($((${TOTAL_MEM}/1024))M total)"
+}
+
+function purge() {
+	echo -en "\e[1;1H\e[2J"
+}
+
+# Search ----------------------------------------------------------
+alias g='grep -i' # Case insensitive grep
+alias f='find . -iname'
+
+# Misc aliases ----------------------------------------------------
+
+alias reloadbash='source ~/.bash_profile'
+
+alias ducks='du -cksh * | sort -rn|head -11' # Lists folders and files sizes in the current folder
+alias listproc='ps aux'
+alias m='more'
+
+alias df='df -h' # Show disk usage
+
+# Shows most used commands
+alias profileme="history | awk '{print \$2}' | awk 'BEGIN{FS=\"|\"}{print \$1}' | sort | uniq -c | sort -n | tail -n 20 | sort -nr"
+
+alias untar="tar xvf"
+alias unxz="xz -d"
+
+alias cp-folder="cp -Rpv" #copies folder and all sub files and folders, preserving security and dates
+
+alias mirror-web="wget -m -x -p --convert-links --no-host-directories --no-cache -erobots=off --user-agent=\"Mozilla/5.0 (X11; U; Linux mipsel; en-US; rv: 1.9.0.3) Gecko/2008092416 Firefox/3.0.3\""
+

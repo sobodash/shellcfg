@@ -1,0 +1,77 @@
+Section "ServerFlags"
+	Option           "DontZap" "false"
+	Option           "NoPM" "true"
+
+EndSection
+
+Section "Module"
+	Load             "extmod"
+	Load             "dbe"
+	Load             "vgahw"
+	Load             "dri"
+	Load             "record"
+	Load             "type1"
+	Load             "xaa"
+	Load             "ddc"
+	Load             "i2c"
+	Load             "vbe"
+EndSection
+
+Section "InputDevice"
+	Identifier       "Generic Keyboard"
+	Driver           "kbd"
+	Option           "XkbRules" "xorg"
+	Option           "XkbModel" "pc104"
+	Option           "XkbLayout" "us"
+	Option           "XkbOptions" "terminate:ctrl_alt_bksp"
+EndSection
+
+Section "Device"
+	Identifier       "Card0"
+	Driver           "siliconmotion"
+	VendorName       "Silicon Motion, Inc."
+	BoardName        "SM712 LynxEm+"
+	BusID            "PCI:0:8:0"
+	Option           "pci_burst" "true"
+	Option           "HWCursor" "true"
+	Option           "VideoKey" "45000"
+	Option           "UseBIOS" "false"
+	Option           "PanelSize" "1024x600"
+	Option           "CSCVideo" "false"
+	Option           "AccelMethod" "XAA"
+EndSection
+
+Section "Monitor"
+	Identifier       "Monitor0"
+	VendorName       "Monitor Vendor"
+	ModelName        "Monitor Model"
+	Option           "DPMS" "false"
+	HorizSync        30-70
+	VertRefresh      50-80
+	ModeLine         "1024x600@60" 49.0 1024 1064 1168 1312 600 601 604 622
+	ModeLine         "1024x600@70" 58.1 1024 1072 1076 1328 600 601 604 625
+	ModeLine         "1024x600@75" 63.2 1024 1080 1184 1344 600 601 604 627
+        ModeLine         "1024x600@85" 62.8 1024 1080 1192 1360 600 601 604 630
+EndSection
+
+Section "Screen"
+	Identifier       "Screen0"
+	Device           "Card0"
+	Monitor          "Monitor0"
+	DefaultDepth     16
+	SubSection "Display"
+	   Viewport      0 0
+	   Depth         8
+	   Modes         "800x600@60"
+	EndSubSection
+	SubSection "Display"
+	   Viewport      0 0
+	   Depth         16
+	   Modes         "1024x600@60"
+	EndSubSection
+	SubSection "Display"
+	   Viewport      0 0
+	   Depth         24
+	   Modes         "800x480@60"
+	EndSubSection
+EndSection

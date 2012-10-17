@@ -1,0 +1,14 @@
+#!/bin/bash
+LINE=
+WRAP=0
+for i in {32..255}; do
+    COUNT=`printf "%X" $i`
+    WRAP=$(($WRAP+1))
+    if [[ $WRAP -eq 16 ]]; then
+      echo -e "${LINE} \x${COUNT}"
+      LINE=
+      WRAP=0
+    else
+      LINE="${LINE} \x${COUNT}"
+    fi
+done

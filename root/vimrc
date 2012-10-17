@@ -1,0 +1,104 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Visual Settings
+"
+
+set number
+
+" Windows keybinding are more tolerable
+behave mswin
+
+" Set the color scheme to use (must be in $vim$/colors/)
+colorscheme ir_black " I also like habiLight
+set background=dark
+
+" Indenting
+set ai "Auto
+set si "Smart
+
+"Highlights
+set cursorline
+
+" Show the line and column number of the Vim cursor
+set ruler
+
+" Create a nicer ruler similar to the one in LESS
+" Format: "Ln LINE, Col COL (PERCENT%)"
+set rulerformat=%26(Ln\ %l,\ Col\ %c\ \(%p%%%\))
+
+" Use a two line command window instead of one line
+set cmdheight=2
+
+" Show line numbers on the left of each line
+""set number
+
+" Highlight matched strings when using Vim search
+set hlsearch
+
+" Highlight matching brackets/braces/parenthesis when cursor on top
+set showmatch
+
+" Enable syntax highlighting for all languages
+if !exists("syntax_on")
+	syntax on
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Usability
+"
+
+" Disable automatic line wrapping
+set nowrap
+set textwidth=0
+
+" Set the width of the <TAB> character (I like small indents)
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+
+" Show commands as you type them
+set showcmd
+
+" Disable backup files
+" This is mostly an annoyance fix for Windows users as Gvim forgets to to
+" delete backups after save and exit
+set nobackup
+
+" Instead, write a temporary backup file while saving in case the PC explodes
+" and you have to beg for repair money
+set writebackup
+
+" Hide the mouse pointer when typing text
+set mousehide
+
+" Store the last 30 console commands in the history and allow the user to
+" browse them with the Up and Down arrows
+set history=30
+
+" Disable the annoying ding sounds when Vim has an error
+set noerrorbells
+
+" Flash error messages to the console instead
+set visualbell
+
+" Kill Vi compatability for Vim style
+set nocompatible
+
+" Fix the encding
+set enc=utf-8
+set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
+
+" Make shift-insert work like in Xterm
+map <S-Insert> <MiddleMouse>
+map! <S-Insert> <MiddleMouse>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Programming Settings
+"
+
+" Do not send a carriage return after the last line when doing web
+" programming or it will cause HTML output to begin. Yikes!
+set binary noeol
+
+" Allow users to backspace over any characters, no more Vim blocking you from
+" deleting that empty line
+set backspace=indent,eol,start whichwrap+=<,>,[,]

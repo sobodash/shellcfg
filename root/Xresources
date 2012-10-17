@@ -1,0 +1,87 @@
+Xft.dpi: 96
+
+URxvt.urgentOnBell: true
+URxvt.bellIsUrgent: true
+
+URxvt*imLocale: en_US
+URxvt.inputMethod: fcitx
+
+URxvt*font: xft:Terminus-10,xft:WenQuanYi Bitmap Song-9:antialias=false
+URxvt*cutchars: BACKSLASH '"'&()*,;<=>?@[]{|}
+URxvt*colorUL: #86a2be
+URxvt.cursorColor: #f2f2f2
+
+URxvt*internalBorder: 0
+URxvt*jumpScroll: true
+URxvt*loginShell: true
+URxvt*perl-ext-common: default,matcher,searchable-scrollback
+URxvt*pointerBlank: true
+URxvt*saveLines: 4000
+URxvt*secondaryScroll: true
+URxvt*scrollBar: false
+URxvt*scrollTtyKeypress: true
+URxvt*scrollWithBuffer: true
+URxvt*termName: rxvt-unicode
+URxvt*urlLauncher: /usr/bin/w3m
+
+!Base colors
+URxvt*underlineColor: #86a2be
+URxvt*background: #000000
+URxvt*foreground: #f2f2f2
+
+! Terminal colors
+
+! Standard VGA
+!URxvt*color0:  #000000
+!URxvt*color1:  #a80000
+!URxvt*color2:  #00a800
+!URxvt*color3:  #a8a800
+!URxvt*color4:  #0000a8
+!URxvt*color5:  #a800a8
+!URxvt*color6:  #00a8a8
+!URxvt*color7:  #a8a8a8
+!URxvt*color8:  #000054
+!URxvt*color9:  #ff0054
+!URxvt*color10: #00ff54
+!URxvt*color11: #ffff54
+!URxvt*color12: #0000ff
+!URxvt*color13: #ff00ff
+!URxvt*color14: #00ffff
+!URxvt*color15: #ffffff
+
+! IR_Black (from blog.toddwerth.com)
+!URxvt*color0:  #101010
+!URxvt*color1:  #e85f4d
+!URxvt*color2:  #a1e84f
+!URxvt*color3:  #edeb79
+!URxvt*color4:  #63adeb
+!URxvt*color5:  #e867eb
+!URxvt*color6:  #9a9ded
+!URxvt*color7:  #f2f2f2
+!URxvt*color8:  #747474
+!URxvt*color9:  #f99286
+!URxvt*color10: #c3f786
+!URxvt*color11: #fcfbcc
+!URxvt*color12: #b6defb
+!URxvt*color13: #fba1fb
+!URxvt*color14: #d7d9fc
+!URxvt*color15: #e2e2e2
+
+! Candy Colors (from stevelosh.com)
+URxvt*color0:  #000000
+URxvt*color1:  #e52222
+URxvt*color2:  #a6e32d
+URxvt*color3:  #fc951e
+URxvt*color4:  #c48dff
+URxvt*color5:  #fa2573
+URxvt*color6:  #67d9f0
+URxvt*color7:  #f2f2f2
+URxvt*color8:  #747474
+URxvt*color9:  #e52222
+URxvt*color10: #a6e32d
+URxvt*color11: #fc951e
+URxvt*color12: #c48dff
+URxvt*color13: #fa2573
+URxvt*color14: #67d9f0
+URxvt*color15: #f2f2f2
+

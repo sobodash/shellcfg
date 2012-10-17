@@ -1,0 +1,22 @@
+
+[input-def]
+0=*
+
+[input2]
+0=/home/d/Reon Kadena 8.mp4
+
+[cmdline]
+0=q
+1=jlksjlksjlsk
+2=
+
+[Dir Hist New Left Panel]
+0=/home
+1=/home/d/mcthemes
+2=/home/d
+
+[Dir Hist New Right Panel]
+0=/home/d/.config/awesome
+1=/home/d/.config
+2=/home/d
+3=/media

@@ -1,0 +1,2 @@
+SET CFLAGS -O2 -march=pentium-m -fomit-frame-pointer -pipe
+SET CXXFLAGS -O2 -march=pentium-m -fomit-frame-pointer -pipe

@@ -1,0 +1,59 @@
+Section "InputDevice"
+   Identifier         "Generic Keyboard"
+   Driver             "kbd"
+   Option             "XkbRules"   "xorg"
+   Option             "XkbModel"   "pc104"
+   Option             "XkbLayout"   "us"
+EndSection
+
+Section "InputDevice"
+   Identifier         "Configured Mouse"
+   Driver             "mouse"
+EndSection
+
+Section "Monitor"
+	Identifier        "Generic Monitor"
+	ModelName         "Hisense TLM40V68PK"
+	HorizSync         31.5 - 48.5
+	VertRefresh       59.0 - 75.0
+	Option            "DPMS"
+EndSection
+
+Section "Device"
+	Identifier        "Card0"
+	Driver            "intel"
+	Option            "ddc" "true"
+	Option            "DRI" "true"
+	Option            "CloneRefresh" "60"
+	Option            "Dpi" "72 x 72"
+	Option            "NoDDC"
+	Option            "LinearAlloc" "6144"
+	Option            "CacheLines" "1080"
+	Option            "EnablePageFlip" "true"
+	Option            "AccelMethod" "xaa"
+	Option            "MigrationHeuristic" "greedy"
+	Option            "PageFlip" "true"
+EndSection
+
+Section "Screen"
+        Identifier    "Default Screen"
+        Device        "Intel GMA 950"
+        Monitor       "Generic Monitor"
+        DefaultDepth  24
+        SubSection "Display"
+                Depth 16
+                Modes "800x480@60"
+        EndSubsection
+        SubSection "Display"
+                Depth 24
+                Modes "800x480@60"
+        EndSubsection
+        SubSection "Display"
+                Depth 16
+                Modes "1360x768@60"
+        EndSubsection
+        SubSection "Display"
+                Depth 24
+                Modes "1360x768@60"
+        EndSubsection
+EndSection

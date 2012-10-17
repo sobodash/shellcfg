@@ -1,0 +1,2 @@
+SET CFLAGS -O2 -march=loongson2f -mtune=loongson2f -fomit-frame-pointer -mplt -pipe
+SET CXXFLAGS -O2 -march=loongson2f -mtune=loongson2f -fomit-frame-pointer -mplt -pipe
