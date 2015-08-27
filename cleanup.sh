@@ -28,3 +28,4 @@ echo "Purging files that need root permissions..."
 sudo rm /etc/X11/xorg.conf >>/dev/null 2>&1
 sudo rm /etc/dpkg/buildflags.conf >>/dev/null 2>&1
 sudo rm /root/.gtkrc-2.0 >>/dev/null 2>&1
+
