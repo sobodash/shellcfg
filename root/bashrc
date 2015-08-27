@@ -1,7 +1,7 @@
 # Set up fcitx as default IME
-export XMODIFIERS="@im=fcitx"
-export QT_IM_MODULE=xim
-export GTK_IM_MODULE=xim
+#export XMODIFIERS="@im=fcitx"
+#export QT_IM_MODULE=xim
+#export GTK_IM_MODULE=xim
 
 # Fix MALLOC error with some programs like audtty
 export MALLOC_CHECK_=0
